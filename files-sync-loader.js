@@ -11,11 +11,15 @@ class files_sync_loader {
 	}
 	
 	const files = glob.sync(searching_path, options)
-	this.json = {};
+	this._json = {};
 	for (let i = 0; i < files.length; ++i)
 	{
-	    this.json[path.basename(files[i], ext)] = require(files[i]);
+	    this._json[path.basename(files[i], ext)] = require(files[i]);
 	}
+    }
+
+    get json() {
+	return (this._json);
     }
 }
 
